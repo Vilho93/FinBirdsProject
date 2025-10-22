@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../tyylit/style.css" rel="stylesheet">
+    <script src="../java/code.js" defer></script>
+    <title>Tunnistuspeli - Suomen linnut</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <a href="./index.html" class="brand">
+                    <img src="../kuvat/SL_logo.png" alt="SL-logo" width="60"/>
+                </a>
+                <ul>
+                    <li><a href="./index.html">Etusivu</a></li>
+                    <li><a href="./quiz.html">Tunnistuspeli</a></li>
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <h1>Tunnistuspeli</h1>
+                <p>Tervetuloa pelaamaan lintujen tunnistuspeliä!</p>
+                <div id="game" class="game hidden" aria-live="polite"> <!-- hidden luokka piilottaa sen kunnes aloitetaan peli -->
+                    <div class="hud">                                   <!-- sisältää pelaajalle näkyvän tilanteen --> 
+                        <div id="score">Pisteet: 0</div>            
+                    </div>
+                    <div>
+                        <h3>Mikä lintulaji kuvassa esiintyy?</h3>
+                    </div>
+                    <div class="image-wrap">
+                    <img id="bird-img" src="" alt="Tunnistettava lintulaji"/>
+                    </div>
+
+                    <div id="choices" class="choices" role="group" aria-label="Vastausvaihtoehdot"></div>
+
+                    <p id="feedback" class="feedback" aria-live="polite"></p>
+
+                    <div class="controls">
+                        <button id="restartBtn" class="secondary hidden">Pelaa uudelleen</button>
+                    </div>
+                    
+                </div>
+
+        </article>
+        <button id="startBtn">Aloita peli</button>
+
+       
+        <footer>
+            <div class="footer-inner">
+                <div class="foot-left">
+                    <p>Ville Sarajärvi</p>
+                    <p>TIK25KM</p>
+                </div>
+                <img src="../kuvat/SL_logo.png" alt="logo" width="60px"/>
+            </div>
+            </footer>
+    </div>    
+</body>
+</html>

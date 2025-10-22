@@ -1,0 +1,238 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(146, 181, 226);
+}
+
+#container {
+    max-width: 1200px;
+    margin: 0 auto; /* Keskittää laatikon vaakasuunnassa */ 
+    padding: 20px;  /* Sisätilaa lisää */  
+    background-color:white;    
+}
+
+header {
+    background-color: rgb(21, 151, 28);
+    margin: -20px -20px -20px;
+    padding: 0 20px;
+    font-size: 1.2rem ;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80px;
+}
+
+
+nav ul {               
+    list-style: none;              
+    margin: 0;
+    padding: 0;
+     /* Listasta pois pisteet ja tyhjä tila */ 
+    display: flex;  /* Linkit vierekkäin */
+    justify-content: center;    /* Navin keskitys */    
+    gap: 20px;  /* väliä linkkien väliin */
+}
+
+nav ul li a {
+    color: white; 
+    text-decoration: none; /* Linkeiltä alleviivaukset pois */
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+nav ul li a:hover {
+    color:rgb(2, 51, 2)
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+article h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+article p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+/* Kuva ja linkki rinnakkain */
+.image-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* että asettuu nätisti mobiilissa allekkain */
+}
+
+.play-link {
+  color: #12331e;
+  font-size: 1.6rem;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+}
+
+
+figure {
+    text-align: right;
+    margin: 0;
+}
+
+figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;   
+}
+
+figcaption {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+footer {
+    margin-top: 40px;
+    background-color: rgb(21, 151, 28); 
+    padding: 14px 16px;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.foot-left p {
+    margin: 2px 0;
+}
+
+#startBtn {
+    display: inline-block;
+    width: min(90%, 520px);
+    height: 220px;
+    background-image: url(../kuvat/owl.jpg)  ;
+    background-position: center;
+    font-size: 3rem;
+    color: white;
+}
+
+/* Peli piiloon ennen aloitusta */
+.hidden {
+  display: none !important;
+}
+
+/* Pelialueen asettelu */
+.game {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Pisteet */
+.hud {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Kuva keskelle ja sopivaan kokoon */
+.image-wrap {
+  display: grid;
+  place-items: center;
+}
+.image-wrap img {
+  max-width: 100%;
+  max-height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+/* Vaihtoehdot vierekkäin */
+.choices {
+    display: flex;
+    flex-wrap: wrap;      /* rivittyvät jos ei mahdu yhdelle riville */
+    gap: 0.5rem;          /* väli nappien väliin */
+    justify-content: center;
+}
+
+/* Nappien perusulkoasu */
+.choice {
+    max-width: 400px;
+    max-height: 50px;
+  background: #22c55e;      /* vihreä tausta */
+  color: white;             /* valkoinen teksti */
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.2s;
+}
+.choice:hover,
+.choice:focus {
+  background: #16a34a;      /* tummempi vihreä hoverilla */
+  outline: none;
+}
+
+/* Käytöstä poistetut (klikkauksen jälkeen) */
+.choice.disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Oikea vastaus korostettuna */
+.choice.correct {
+  background: #15803d;   /* tummin vihreä */
+}
+
+/* Klikattu väärä vastaus */
+.choice.wrong {
+  background: #dc2626;  
+}
+
+/* Jos väärin vastattu → korosta oikea */
+.choice.highlight {
+  box-shadow: 0 0 0 2px #fff inset, 0 0 0 4px #15803d inset;
+}
+
+.controls {
+  margin-top: 1.5rem;
+  display: flex;            
+  justify-content: center;   
+}
+
+button.secondary {
+  max-width: 400px;
+  max-height: 200px;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  border: none;
+  background: rgb(21, 151, 28);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.feedback {
+  min-height: 1.5rem;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+button.secondary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  article h1 { font-size: 2.2rem; }
+  #startBtn { height: 180px; font-size: 1.6rem; }
+  .image-wrap img { max-width: 100%; max-height: 240px; }
+}
