@@ -18,6 +18,7 @@ Toiminnot:
 
 Käyttöönotto:
 Kloonaa repositorio:
+https://github.com/Vilho93/FinBirdsProject    ja avaa index.html selaimessa.
 
 
 Projektin kehittäjä:
