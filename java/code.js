@@ -18,23 +18,23 @@ const TOTAL_QUESTIONS = Math.min(10, BIRDS.length); // Max 10 kysymystä
 const CHOICES_COUNT   = 4; // 4 vastausvaihtoehtoa
 
 
-const $ = (sel) => document.querySelector(sel); // Pikakutsu elementin hakuun
+const $ = (sel) => document.querySelector(sel); 
 
 // Fisher-Yates sekoitusalgoritmi arpoo vaihtoehdot ja kysymykset
 function shuffle(arr) { 
-  const a = arr.slice();                             // Kopioi alkuperäisen taulukon, jotta sitä ei muuteta
+  const a = arr.slice();                             
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));  // satunnainen indeksi 0..i
-    [a[i], a[j]] = [a[j], a[i]];                    // vaihdetaan paikkoja
+    const j = Math.floor(Math.random() * (i + 1));  
+    [a[i], a[j]] = [a[j], a[i]];                    
   }
   return a;                                             // Palauttaa uuden satunnaisen taulukon
 }
 
 // Poimii n satunnaisia alkioita taulukosta, mutta jättää oikean vastauksen
-function sample(arr, n, excludeIndex = -1) {                                    // Luo uuden taulukon, jossa jokainen alkio on objekti
-  const pool = arr.map((v, i) => ({ v, i })).filter(o => o.i !== excludeIndex); // Poistaa halutun indeksin
-  const mixed = shuffle(pool);                                                  // Sekoittaa jäljelle jääneet alkiot 
-  return mixed.slice(0, n).map(o => o.v);                                       // Ottaa n ensimmäistä ja palauttaa vain niiden arvot
+function sample(arr, n, excludeIndex = -1) {                                    
+  const pool = arr.map((v, i) => ({ v, i })).filter(o => o.i !== excludeIndex); 
+  const mixed = shuffle(pool);                                                  
+  return mixed.slice(0, n).map(o => o.v);                                       
 }
 
 // Lataa kuvat selaimen välimuistiin jo etukäteen
@@ -46,10 +46,10 @@ function preloadImages(items) {
 }
 
 // Pelin tilamuuttujat 
-let questions = [];         // kysymyslista
-let current   = 0;          // monesko kysymys
-let score     = 0;          // pisteet
-let locked    = false;      // estää käyttäjää klikkaamasta monesti
+let questions = [];         
+let current   = 0;          
+let score     = 0;          
+let locked    = false;     
 
 
 //  DOM-elementit 
@@ -76,15 +76,15 @@ function startGame(){
   current = 0;
   locked = false;
 
-  feedbackEl.textContent = "";          // Poistaa aiemmat palautteet
-  scoreEl.textContent = "Pisteet: 0";   // Päivittää pistelaskurin
-  restartBtn?.classList.add("hidden");  // piilottaa pelaa uudelleen- napin
+  feedbackEl.textContent = "";          
+  scoreEl.textContent = "Pisteet: 0";  
+  restartBtn?.classList.add("hidden"); 
 
   const shuffled = shuffle(BIRDS);                // sekoittaa lintu datan
-  questions = shuffled.slice(0, TOTAL_QUESTIONS); // Ottaa vain sen 10 kysymystä peliin
+  questions = shuffled.slice(0, TOTAL_QUESTIONS); // Ottaa vain 10 kysymystä peliin
 
-  game.classList.remove("hidden");          // peli tulee näkyviin
-  $("#startBtn")?.classList.add("hidden");  // piilottaa aloita peli- napin
+  game.classList.remove("hidden");          
+  $("#startBtn")?.classList.add("hidden");  
 
   renderQuestion();  // Käynnistää ekan kysymyksen
 }
@@ -98,18 +98,18 @@ function renderQuestion() {
   const q = questions[current];                                               // Hakee nykyisen kysymyksen olion listasta.
   imgEl.src = q.img;                                                          // Näyttää kysymys kuvan.
 
-  const distractors = sample(BIRDS, CHOICES_COUNT - 1, BIRDS.indexOf(q));     // Poimii satunnaiset väärät vastaukset.
-  const options = shuffle([q, ...distractors]).map(o => o.name);              // Luo taulukon oikeasta ja vääristä vastauksista satunnaiseen järjestykseen 
-                                                                              // ja muuntaa olion name kentäksi.
+  const distractors = sample(BIRDS, CHOICES_COUNT - 1, BIRDS.indexOf(q));     
+  const options = shuffle([q, ...distractors]).map(o => o.name);              
+                                                                              
  
-  choicesEl.innerHTML = "";                       // tyhjentää vastausvaihtoehdon                                       
-  options.forEach((name, idx) => {                  // Käy läpi kaikki vastausvaihtoehdot
-    const btn = document.createElement("button");   // tekee napin
-    btn.className = "choice";                       // Antaa CSS-luokan
+  choicesEl.innerHTML = "";                                                            
+  options.forEach((name, idx) => {                  
+    const btn = document.createElement("button");   
+    btn.className = "choice";                      
     btn.type = "button";                            
     btn.textContent = name;
     btn.setAttribute("data-correct", String(name === q.name));  // Tallentaa onko vaihtoehto true / false
-    btn.addEventListener("click", onChoice);    // Nappia klikatessa, OnChoice- käsittelijä hoitaa vastauksen käsittelyn ja seuraava napin aktivoinnin
+    btn.addEventListener("click", onChoice);                     // Nappia klikatessa, OnChoice- käsittelijä hoitaa vastauksen käsittelyn ja seuraava napin aktivoinnin
     choicesEl.appendChild(btn);
   });
 }
@@ -137,15 +137,15 @@ function onChoice(e) {
     btn.classList.add("picked");                  // lisää napille luokan "picked", jolla voi korostaa oikeaa valintaa.
     score++;                                      // kasvattaa pistemäärää yhdellä.
     scoreEl.textContent = `Pisteet: ${score}`;    // päivittää käyttöliittymässä näkyvän pistelaskurin uuteen arvoon.
-    feedbackEl.textContent = "Oikein!";           // näyttää palautteen käyttäjälle.
-  } else {                         // jos vastaus väärin
+    feedbackEl.textContent = "Oikein!";           
+  } else {                         
     btn.classList.add("wrong");               
-    const correctBtn = [...choicesEl.children].find(el => el.getAttribute("data-correct") === "true"); // etsii listasta sen napin joka olisi ollut oikein.
-    correctBtn?.classList.add("highlight");               // lisää napille oikean luokan, jotta käyttäjä näkee, mikä olisi ollut oikein.
+    const correctBtn = [...choicesEl.children].find(el => el.getAttribute("data-correct") === "true");  // etsii listasta sen napin joka olisi ollut oikein.
+    correctBtn?.classList.add("highlight");                                                             // lisää napille oikean luokan, jotta käyttäjä näkee, mikä olisi ollut oikein.
     feedbackEl.textContent = "Nyt meni väärin!";
   }
 
-  // Automaattinen siirtyminen 1,5 sekunnin päästä
+  // Automaattinen siirtyminen 1,5 sekunnin päästä.
   setTimeout(() => {
     current++;
     if (current >= TOTAL_QUESTIONS) {
@@ -168,7 +168,7 @@ function saveBestScore(score) {
   const best = getBestScore();
   if (score > best) {
     localStorage.setItem("bestScore", score);
-    return true; // kertoo että uusi ennätys tehtiin
+    return true;
   }
   return false;
 }

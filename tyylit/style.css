@@ -7,8 +7,8 @@ body {
 
 #container {
     max-width: 1200px;
-    margin: 0 auto; /* Keskittää laatikon vaakasuunnassa */ 
-    padding: 20px;  /* Sisätilaa lisää */  
+    margin: 0 auto; 
+    padding: 20px;   
     background-color:white;    
 }
 
@@ -30,16 +30,15 @@ nav {
 nav ul {               
     list-style: none;              
     margin: 0;
-    padding: 0;
-     /* Listasta pois pisteet ja tyhjä tila */ 
-    display: flex;  /* Linkit vierekkäin */
-    justify-content: center;    /* Navin keskitys */    
-    gap: 20px;  /* väliä linkkien väliin */
+    padding: 0; /
+    display: flex;  
+    justify-content: center;       
+    gap: 20px;  
 }
 
 nav ul li a {
     color: white; 
-    text-decoration: none; /* Linkeiltä alleviivaukset pois */
+    text-decoration: none; 
     font-weight: bold;
     transition: color 0.2s;
 }
@@ -69,7 +68,7 @@ article p {
   justify-content: center;
   gap: 2rem;
   margin-top: 1.5rem;
-  flex-wrap: wrap; /* että asettuu nätisti mobiilissa allekkain */
+  flex-wrap: wrap; 
 }
 
 .play-link {
@@ -156,8 +155,8 @@ footer {
 /* Vaihtoehdot vierekkäin */
 .choices {
     display: flex;
-    flex-wrap: wrap;      /* rivittyvät jos ei mahdu yhdelle riville */
-    gap: 0.5rem;          /* väli nappien väliin */
+    flex-wrap: wrap;      
+    gap: 0.5rem;          
     justify-content: center;
 }
 
@@ -165,8 +164,8 @@ footer {
 .choice {
     max-width: 400px;
     max-height: 50px;
-  background: #22c55e;      /* vihreä tausta */
-  color: white;             /* valkoinen teksti */
+  background: #22c55e;     
+  color: white;             
   border: none;
   border-radius: 6px;
   padding: 0.5rem 1rem;
@@ -176,7 +175,7 @@ footer {
 }
 .choice:hover,
 .choice:focus {
-  background: #16a34a;      /* tummempi vihreä hoverilla */
+  background: #16a34a;      /
   outline: none;
 }
 
@@ -188,7 +187,8 @@ footer {
 
 /* Oikea vastaus korostettuna */
 .choice.correct {
-  background: #15803d;   /* tummin vihreä */
+  background: #15803d;  
+  
 }
 
 /* Klikattu väärä vastaus */
@@ -196,7 +196,7 @@ footer {
   background: #dc2626;  
 }
 
-/* Jos väärin vastattu → korosta oikea */
+/* Jos väärin vastattu, korostaa oikean */
 .choice.highlight {
   box-shadow: 0 0 0 2px #fff inset, 0 0 0 4px #15803d inset;
 }

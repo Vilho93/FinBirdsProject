@@ -21,6 +21,9 @@ Kloonaa repositorio:
 https://github.com/Vilho93/FinBirdsProject    ja avaa index.html selaimessa.
 
 
+Sivuston kuvat ovat peräisi Pixabayn vapaasta kuvapankista.
+
+
 Projektin kehittäjä:
 
 Ville Sarajärvi     Opiskelija OAMK TIK25KM
